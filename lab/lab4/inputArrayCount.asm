@@ -11,6 +11,7 @@ main:
 
     la $t0, arrayA
     la $t8, count
+    lw $t8, 0($t8)
 
 ######################################
 # read in user input for array 
@@ -41,14 +42,13 @@ end1:
 ######################################
     addi $t1, $t0, 0 # start point
     addi $t2, $t0, 32 # end point
-    lw $s1, 0($t8) # load value of count
 
 loop: slt $t3, $t1, $t2 # loop condition HLL: i < 8
       beq $t3, $zero, end # loop condition assembly: t1 < t2
       lw $t4, 0($t1) # load array element
       slt $s0, $t5, $t4 # check <= input, arr[i] <= input 
       bne $s0, $zero, skip # (complement) arr[i] > input (if true goto skip)
-      addi $s1, $s1, 1 # increment counter 
+      addi $t8, $t8, 1 # increment counter 
 skip: addi $t1, $t1, 4 # move pointer to next element
       j loop # go back to start of loop
 end:
@@ -58,7 +58,7 @@ end:
 ######################################
 
     li   $v0, 1    # system call code for print_int
-    add  $a0, $s1, $zero    # integer to print
+    add  $a0, $t8, $zero    # integer to print
     syscall        # print the integer
 
 ######################################
