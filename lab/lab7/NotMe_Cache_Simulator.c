@@ -5,7 +5,7 @@
 
 #define CACHE_UNIT 1024
 
-// to test in wsl: ./a.out 16 16 < NotMe_Sample.txt
+// to test in wsl: ./NotMe_Cache_Simulator.exe 16 16 < NotMe_Sample.txt
 //For readability of the location in a SA cache set
 #define N_WAYS 2    //we simulate a simple 2-way SA cache
 #define LEFT 0  
